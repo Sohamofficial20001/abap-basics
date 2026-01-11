@@ -33,6 +33,6 @@ Just copy programs into SAP system and execute them in SE38.
 ## 🧠 Coming next
 
 - OOP in ABAP
-- Performance tips
+- Performance tips & New Syntax
 - Real project examples
 
