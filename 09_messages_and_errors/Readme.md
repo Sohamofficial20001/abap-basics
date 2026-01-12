@@ -1,0 +1,47 @@
+# 09 – Messages and Error Handling in ABAP
+
+## 🎯 What you will learn
+This topic covers how ABAP communicates with the user using the **MESSAGE** statement and system variables.
+
+You will learn:
+- Different message types
+- Displaying messages on status bar / popup
+- Program termination vs warning
+- Input validation with messages
+- Basic use of SY-SUBRC and SY-MSG fields
+
+## 🧩 Keywords
+MESSAGE, SY-MSGID, SY-MSGNO, SY-SUBRC, Error, Warning, Abort
+
+## 🛠 Transactions Used
+- SE38 / SE80 – ABAP Editor
+- SE91 – Message Class Maintenance (optional)
+
+## 📄 Programs Included
+- z_message_types_demo.abap – different message types example
+
+## ✍️ Explanation (Short & Simple)
+The `MESSAGE` statement is used to show information, warnings or errors to the user.
+Message types decide program flow:
+
+| Type | Meaning | Program continues? |
+|------|--------|---------------------|
+| I    | Information popup | Yes |
+| S    | Status bar message | Yes |
+| W    | Warning | Yes (user must acknowledge) |
+| E    | Error | Return to input field |
+| A    | Abort | Program stops |
+| X    | Short dump (do not use in practice) |
+
+Message classes are created in **SE91** and allow reusable texts.
+
+## 🧭 Try it yourself
+1. Replace `MESSAGE ... TYPE 'I'` with `'E'` and observe behavior  
+2. Add validation for negative input values  
+3. Create a message class in SE91 and use `MESSAGE ID ... NUMBER ...`  
+4. Trigger an error when internal table is empty  
+
+## 🔍 Notes
+- Prefer W/E instead of A/X in real projects  
+- Always validate input parameters  
+- Avoid short dumps in user-facing programs  
