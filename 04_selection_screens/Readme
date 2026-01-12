@@ -1,0 +1,30 @@
+# Topic: Selection Screens in ABAP
+
+## 🎯 What you will learn
+- Creating selection screens in report programs
+- Using PARAMETERS and SELECT-OPTIONS
+- Radio buttons and checkboxes
+- Basic input validation with AT SELECTION-SCREEN
+
+## 🧩 Keywords
+PARAMETERS, SELECT-OPTIONS, RADIOBUTTON, CHECKBOX, AT SELECTION-SCREEN
+
+## 🛠 Transactions Used
+- SE38 / SE80 – Program creation and execution
+
+## 📄 Programs Included
+- z_sel_parameters.abap
+- z_sel_select_options.abap
+- z_sel_radiobuttons_checkboxes.abap
+- z_sel_validation.abap
+- z_sel_bonus_tasks.abap
+
+## ✍️ Explanation (Short & Simple)
+Selection screens allow the user to provide input before executing a report.
+They are automatically generated based on PARAMETERS and SELECT-OPTIONS statements.
+
+## 🧭 Try it yourself
+- Create a program with material input
+- Add a checkbox to show/hide extra data
+- Validate that a field is not left empty
+- Add a date range using SELECT-OPTIONS
