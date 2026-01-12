@@ -1,0 +1,13 @@
+Steps to create a Function Module (SE37)
+
+1. Go to transaction SE37
+2. Click 'Create'
+3. Enter name Z_DEMO_FUNC
+4. Assign to a Function Group
+5. Define:
+   - Import parameters
+   - Export parameters
+   - Tables (if required)
+6. Write ABAP code in source tab
+7. Activate Function Module
+8. Test using F8
