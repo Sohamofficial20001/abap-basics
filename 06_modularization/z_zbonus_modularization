@@ -1,0 +1,134 @@
+REPORT z_zbonus_modularization.
+
+*----------------------------------------------------------------------
+* Modularization in ABAP
+*
+* This program contains "Try It Yourself" tasks:
+* 1) Simple FORM
+* 2) FORM with parameters (addition)
+* 3) FORM processing internal tables
+* 4) WHILE/DO logic inside FORM
+* 5) Convert FORM logic into METHOD
+*-----------------------------------------------------------------------
+
+"------------------------------------------------"
+" 1) Simple FORM example                         "
+"------------------------------------------------"
+
+PERFORM hello_form.
+
+FORM hello_form.
+  WRITE: / 'Hello from FORM routine'.
+ENDFORM.
+
+"------------------------------------------------"
+" 2) FORM with parameters (sum of numbers)       "
+"------------------------------------------------"
+
+DATA: lv_a   TYPE i VALUE 5,
+      lv_b   TYPE i VALUE 7,
+      lv_sum TYPE i.
+
+PERFORM add_numbers USING lv_a lv_b CHANGING lv_sum.
+
+WRITE: / 'Sum calculated in FORM:', lv_sum.
+
+FORM add_numbers
+  USING    p_a TYPE i
+           p_b TYPE i
+  CHANGING p_sum TYPE i.
+
+  p_sum = p_a + p_b.
+
+ENDFORM.
+
+"-------------------------------------------------------------"
+" 3) FORM processing internal table and printing odd numbers  "
+"-------------------------------------------------------------"
+
+TYPES: BEGIN OF ty_num,
+         value TYPE i,
+       END OF ty_num.
+
+DATA: lt_numbers TYPE STANDARD TABLE OF ty_num,
+      ls_number  TYPE ty_num.
+
+ls_number-value = 1.  APPEND ls_number TO lt_numbers.
+ls_number-value = 2.  APPEND ls_number TO lt_numbers.
+ls_number-value = 3.  APPEND ls_number TO lt_numbers.
+ls_number-value = 4.  APPEND ls_number TO lt_numbers.
+ls_number-value = 5.  APPEND ls_number TO lt_numbers.
+
+PERFORM print_odd_numbers USING lt_numbers.
+
+FORM print_odd_numbers USING pt_tab TYPE STANDARD TABLE.
+
+  DATA: ls_row LIKE LINE OF pt_tab.
+
+  LOOP AT pt_tab INTO ls_row.
+
+    IF ls_row-value MOD 2 = 0.
+      CONTINUE. " skip even
+    ENDIF.
+
+    WRITE: / 'Odd number from table:', ls_row-value.
+
+  ENDLOOP.
+
+ENDFORM.
+
+"------------------------------------------------"
+" 4) DO / EXIT logic encapsulated in a FORM      "
+"------------------------------------------------"
+
+PERFORM loop_demo.
+
+FORM loop_demo.
+
+  DATA lv_cnt TYPE i VALUE 1.
+
+  DO.
+
+    IF lv_cnt > 5.
+      EXIT.
+    ENDIF.
+
+    WRITE: / 'Loop value in FORM:', lv_cnt.
+
+    lv_cnt = lv_cnt + 1.
+
+  ENDDO.
+
+ENDFORM.
+
+"-------------------------------------------------------"
+" 5) Conversion example: METHOD vs FORM demonstration   "
+"-------------------------------------------------------"
+
+CLASS lcl_demo DEFINITION.
+  PUBLIC SECTION.
+    METHODS say_hello.
+ENDCLASS.
+
+CLASS lcl_demo IMPLEMENTATION.
+  METHOD say_hello.
+    WRITE: / 'Hello from METHOD (OO approach)'.
+  ENDMETHOD.
+ENDCLASS.
+
+START-OF-SELECTION.
+
+  WRITE: / '--- Method vs FORM Example ---'.
+
+  PERFORM hello_form_again.
+
+  DATA(lo_obj) = NEW lcl_demo( ).
+  lo_obj->say_hello( ).
+
+FORM hello_form_again.
+  WRITE: / 'Hello from FORM (procedural approach)'.
+ENDFORM.
+
+*----------------------------------------------------------------------
+* END OF PROGRAM
+*----------------------------------------------------------------------
