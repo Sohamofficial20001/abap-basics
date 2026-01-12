@@ -1,0 +1,12 @@
+REPORT z_aggregate_functions.
+
+DATA: lv_count TYPE i.
+
+SELECT COUNT( * )
+  FROM sflight
+  WHERE carrid = 'LH'
+  INTO lv_count.
+
+IF sy-subrc IS INITIAL.
+  WRITE: / 'Number of records for LH:', lv_count.
+ENDIF.
