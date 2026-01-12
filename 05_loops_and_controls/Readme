@@ -1,0 +1,28 @@
+# 05 – Loops and Control Statements in ABAP
+
+This section covers how program flow is controlled using loops and decisions.
+
+## 🚀 Concepts Covered
+
+- DO...ENDDO
+- WHILE...ENDWHILE
+- LOOP AT internal tables
+- IF / ELSEIF / ELSE / ENDIF
+- CASE / WHEN
+- CONTINUE and EXIT
+- Nested loops (and why to be careful)
+
+Each program in this folder is short and focused on one concept.
+
+---
+
+## 🧩 Try it yourself
+
+1. Write a DO loop from 1–10 and print only odd numbers.
+2. Convert a WHILE loop into a DO loop.
+3. Using LOOP AT, print only entries where value > 100.
+4. Use CASE statement for day = 'MON', 'TUE', 'WED'.
+5. Break a loop when value = 5 using EXIT.
+6. Skip printing value = 3 using CONTINUE.
+
+---
